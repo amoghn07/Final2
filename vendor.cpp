@@ -3,7 +3,7 @@
 #include <fstream>
 #include <deque>
 #include <vector>
-#include <queue>
+#include <list>
 using namespace std;
 
 const int NAME = 15;
@@ -77,6 +77,9 @@ int main(){
     //vector for bracelet customers
     vector<Mc> bline;
 
+    //list for bag customer
+    list<Mc> nline;
+
     //initializing lines with 3 people
     for (int i = 0; i < 3; i++){
         //add node
@@ -93,6 +96,12 @@ int main(){
         bracelet.name = customerNames[rand() % NAME];
         bracelet.order = braceletTypes[rand() % ORDER];
         bline.push_back(bracelet);
+
+        //add bag customer
+        Mc bag;
+        bag.name = customerNames[rand() % NAME];
+        bag.order = bagTypes[rand() % ORDER];
+        nline.push_back(bag);
     }
 
     //simulation
@@ -174,6 +183,34 @@ int main(){
             }
         }
 
+        // SIM FOR LIST
+        if (!nline.empty()){
+            cout << "Served (Bag): " << nline.front().name << " - " << nline.front().order << "\n";
+            nline.pop_front();
+        } 
+        else {
+            cout << "Served (Bag): (none)\n";
+        }
+
+        int ranNumN = (rand() % 100);
+        if (ranNumN <= 49){
+            Mc n;
+            n.name = customerNames[rand() % NAME];
+            n.order = bagTypes[rand() % ORDER];
+            nline.push_back(n);
+            cout << "Joined (Bag): " << nline.back().name << " - " << nline.back().order << "\n";
+        }
+
+        cout << "Bag queue:\n";
+        if (nline.empty()){
+            cout << "Bag queue is empty.\n";
+        }
+        else {
+            for (auto c : nline){
+                cout << c.name << " - " << c.order << endl;
+            }
+        }
+
 
         //increasing round counter
         ct++;
@@ -222,8 +259,7 @@ void removeCustomer(List &l){
 void printQueue(List &l){
     //traversing through list to print
     Node *current = l.head;
-
-    cout << "Current queue:\n";
+    
     if (current == nullptr) {
         cout << "Queue is empty.\n";
         return;
