@@ -16,8 +16,10 @@ struct List{
 };
 
 void addCustomer(string [], string [], List &);
+void removeCustomer(List l, Node *);
 
 int main(){
+    //random seed
     srand(time(0));
 
     //generated data arrays
@@ -31,6 +33,25 @@ int main(){
         "Latte", "Cappuccino", "Espresso", "Americano", "Mocha",
         "Caramel Macchiato", "Cold Brew", "Iced Coffee", "Chai Latte", "Flat White"
     };
+
+    int ct = 0;
+
+    //linked list
+    List line;
+
+    //initializing line with 3 people
+    for (int i = 0; i < 3; i++){
+        addCustomer(customerNames, drinkOrders, line);
+    }
+
+    //simulation
+    while (ct < 10){   
+        //random number
+        int ranNum = (rand() % 100) + 1;
+        
+
+        ct++;
+    }
     return 0;
 }
 
@@ -52,4 +73,8 @@ void addCustomer(string n [] , string o [] , List &l){
         l.tail->next = cust;
         l.tail = cust;
     }
+}
+
+void removeCustomer(List l, Node *n){
+
 }
