@@ -7,7 +7,7 @@ using namespace std;
 struct Node{
     string name;
     string order;
-    Node *next;
+    Node *next = nullptr;
 };
 
 struct List{
@@ -15,9 +15,10 @@ struct List{
     Node *tail;
 };
 
-void addCustomer(string [], string [], List *);
+void addCustomer(string [], string [], List &);
 
 int main(){
+    srand(time(0));
 
     //generated data arrays
     string customerNames[] = {
@@ -33,6 +34,22 @@ int main(){
     return 0;
 }
 
-void addCustomer(string n [] , string o [] , List *l){
-    
+void addCustomer(string n [] , string o [] , List &l){
+    //randomly indexing for arrays
+    int name = rand() % 15;
+    int order = rand() % 10;
+
+    Node *cust = new Node;
+    cust->name = n[name];
+    cust->order = o[order];
+
+    //empty list
+    if (l.head == nullptr) {
+        l.head = cust;
+        l.tail = cust;
+    //not empty
+    } else {
+        l.tail->next = cust;
+        l.tail = cust;
+    }
 }
