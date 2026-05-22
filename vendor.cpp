@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <deque>
+#include <vector>
+
 using namespace std;
 
 
@@ -17,6 +20,7 @@ struct List{
 
 void addCustomer(string [], string [], List &);
 void removeCustomer(List &);
+void printQueue(List &);
 
 int main(){
     //random seed
@@ -60,8 +64,9 @@ int main(){
             addCustomer(customerNames, drinkOrders, line);
             cout << line.tail -> name << " joined the queue.\n";
         }
-        
 
+        printQueue(line);
+        //increasing round counter
         ct++;
     }
     return 0;
@@ -103,4 +108,20 @@ void removeCustomer(List &l){
 
     delete temp;
 
+}
+
+void printQueue(List &l){
+    //traversing through list to print
+    Node *current = l.head;
+
+    cout << "Current queue:\n";
+    if (current == nullptr) {
+        cout << "Queue is empty.\n";
+        return;
+    }
+
+    while (current != nullptr) {
+        cout << current->name << " - " << current->order << endl;
+        current = current->next;
+    }
 }
