@@ -137,16 +137,28 @@ int main(){
 
         //SIM FOR VECTOR
         if (!bline.empty()){
-            cout << bline.front() << " has been served.\n";
+            cout << bline.front().name << " has been served.\n";
             bline.erase(bline.begin());
-            Mc b;
-            b.name = customerNames[rand() % NAME];
-            b.order = braceletTypes[rand()% ORDER];
+        
         }
         int ranNumB = (rand() % 100);
 
         if(ranNumB <= 49){
+            Mc b;
+            b.name = customerNames[rand() % NAME];
+            b.order = braceletTypes[rand()% ORDER];
+            bline.push_back(b);
+        }
 
+        //print bracelet queue
+        cout << "Current bracelet queue:\n";
+        if (bline.empty()){
+            cout << "Muffin queue is empty.\n";
+        } 
+        else {
+            for (auto c : bline){
+                cout << c.name << " - " << c.order << endl;
+            }
         }
 
 
