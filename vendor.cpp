@@ -3,9 +3,10 @@
 #include <fstream>
 #include <deque>
 #include <vector>
-
 using namespace std;
 
+const int NAME = 15;
+const int ORDER = 10;
 
 struct Node{
     string name;
@@ -16,6 +17,12 @@ struct Node{
 struct List{
     Node *head;
     Node *tail;
+};
+
+// muffin booth customer struct for deque
+struct Mc{
+    string name;
+    string order;
 };
 
 void addCustomer(string [], string [], List &);
@@ -50,15 +57,15 @@ int main(){
     //linked list
     List line;
 
-    //deque of nodes to have both customer and order data. next ptr not used
-    deque <Node> mline;
+    //deque for muffin customers
+    deque<Mc> mline;
 
     //initializing lines with 3 people
     for (int i = 0; i < 3; i++){
         addCustomer(customerNames, drinkOrders, line);
-        Node muffin;
-        muffin.name = customerNames[rand() % 15]
-        muffin.order = muffinTypes[rand() % 10]
+        Mc muffin;
+        muffin.name = customerNames[rand() % NAME];
+        muffin.order = muffinTypes[rand() % ORDER];
         mline.push_back(muffin);
     }
 
@@ -67,7 +74,7 @@ int main(){
         cout << "\nRound " << ct + 1 << endl;
 
         //serving head of line
-        if (line.head != nullptr) {
+        /*if (line.head != nullptr) {
             cout << line.head -> name << " has been served.\n";
             removeCustomer(line);
         }
@@ -77,9 +84,28 @@ int main(){
         if (ranNum <= 49){
             addCustomer(customerNames, drinkOrders, line);
             cout << line.tail -> name << " joined the queue.\n";
+        }*/
+
+
+        // sim for deque
+        if (!mline.empty()) {
+            cout << mline.front().name << " has been served.\n";
+            mline.pop_front();
+        } 
+        else {
+            cout << "No customer to serve this round." << endl;
         }
 
-        printQueue(line);
+        int ranNumM = (rand() % 100);
+        if (ranNumM <= 49){
+            Mc m;
+            m.name = customerNames[rand() % NAME];
+            m.order = muffinTypes[rand()% ORDER];
+            mline.push_back(m);
+            cout << mline.back().name << " joined queue.\n";
+        }
+
+
         //increasing round counter
         ct++;
     }
@@ -88,8 +114,8 @@ int main(){
 
 void addCustomer(string n [] , string o [] , List &l){
     //randomly indexing for arrays
-    int name = rand() % 15;
-    int order = rand() % 10;
+    int name = rand() % NAME;
+    int order = rand() % ORDER;
 
     Node *cust = new Node;
     cust->name = n[name];
