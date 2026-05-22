@@ -16,7 +16,7 @@ struct List{
 };
 
 void addCustomer(string [], string [], List &);
-void removeCustomer(List l, Node *);
+void removeCustomer(List &);
 
 int main(){
     //random seed
@@ -45,9 +45,21 @@ int main(){
     }
 
     //simulation
-    while (ct < 10){   
-        //random number
-        int ranNum = (rand() % 100) + 1;
+    while (ct < 10){
+        cout << "\nRound " << ct + 1 << endl;
+
+        //serving head of line
+        if (line.head != nullptr) {
+            cout << line.head -> name << " has been served.\n";
+            removeCustomer(line);
+        }
+
+        //random number from 0 -99
+        int ranNum = (rand() % 100);
+        if (ranNum <= 49){
+            addCustomer(customerNames, drinkOrders, line);
+            cout << line.tail -> name << " joined the queue.\n";
+        }
         
 
         ct++;
@@ -69,12 +81,26 @@ void addCustomer(string n [] , string o [] , List &l){
         l.head = cust;
         l.tail = cust;
     //not empty
-    } else {
+    } 
+    else {
         l.tail->next = cust;
         l.tail = cust;
     }
 }
 
-void removeCustomer(List l, Node *n){
+void removeCustomer(List &l){
+    //func removes head 
+    if (l.head == nullptr) {
+        return;
+    }
+
+    Node *temp = l.head;
+    l.head = l.head->next;
+
+    if (l.head == nullptr) {
+        l.tail = nullptr;
+    }
+
+    delete temp;
 
 }
