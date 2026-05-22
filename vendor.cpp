@@ -15,8 +15,8 @@ struct Node{
 };
 
 struct List{
-    Node *head;
-    Node *tail;
+    Node *head = nullptr;
+    Node *tail = nullptr;
 };
 
 // muffin booth customer struct for deque
@@ -73,6 +73,7 @@ int main(){
     while (ct < 10){
         cout << "\nRound " << ct + 1 << endl;
 
+        //SIM FOR LINKED LIST
         //serving head of line
         /*if (line.head != nullptr) {
             cout << line.head -> name << " has been served.\n";
@@ -87,7 +88,7 @@ int main(){
         }*/
 
 
-        // sim for deque
+        //SIM FOR DEQUEUE
         if (!mline.empty()) {
             cout << mline.front().name << " has been served.\n";
             mline.pop_front();
@@ -104,7 +105,16 @@ int main(){
             mline.push_back(m);
             cout << mline.back().name << " joined queue.\n";
         }
-
+        //print muffin queue
+        cout << "Current muffin queue:\n";
+        if (mline.empty()){
+            cout << "Muffin queue is empty.\n";
+        } 
+        else {
+            for (auto c : mline){
+                cout << c.name << " - " << c.order << endl;
+            }
+        }
 
         //increasing round counter
         ct++;
