@@ -38,14 +38,28 @@ int main(){
         "Caramel Macchiato", "Cold Brew", "Iced Coffee", "Chai Latte", "Flat White"
     };
 
+    string muffinTypes[] = {
+        "Blueberry Muffin", "Chocolate Chip Muffin", "Banana Nut Muffin",
+        "Bran Muffin", "Apple Cinnamon Muffin", "Lemon Poppy Seed Muffin",
+        "Pumpkin Muffin", "Double Chocolate Muffin", "Raspberry Muffin",
+        "Cranberry Orange Muffin"
+    };
+
     int ct = 0;
 
     //linked list
     List line;
 
-    //initializing line with 3 people
+    //deque of nodes to have both customer and order data. next ptr not used
+    deque <Node> mline;
+
+    //initializing lines with 3 people
     for (int i = 0; i < 3; i++){
         addCustomer(customerNames, drinkOrders, line);
+        Node muffin;
+        muffin.name = customerNames[rand() % 15]
+        muffin.order = muffinTypes[rand() % 10]
+        mline.push_back(muffin);
     }
 
     //simulation
