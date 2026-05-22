@@ -3,6 +3,7 @@
 #include <fstream>
 #include <deque>
 #include <vector>
+#include <queue>
 using namespace std;
 
 const int NAME = 15;
@@ -59,6 +60,12 @@ int main(){
         "Hemp Bracelet"
     };
 
+    string bagTypes[] = {
+        "Canvas Tote", "Leather Satchel", "Backpack", "Messenger Bag",
+        "Crossbody Bag", "Clutch", "Duffel Bag", "Bucket Bag",
+        "Fanny Pack", "Drawstring Bag"
+    };
+
     int ct = 0;
 
     //linked list
@@ -92,28 +99,33 @@ int main(){
     while (ct < 10){
         cout << "\nRound " << ct + 1 << endl;
 
-        //SIM FOR LINKED LIST
-        //serving head of line
-        /*if (line.head != nullptr) {
-            cout << line.head -> name << " has been served.\n";
+        // SIM FOR LINKED LIST 
+        if (line.head != nullptr) {
+            cout << "Served (Coffee): " << line.head->name << " - " << line.head->order << "\n";
             removeCustomer(line);
+        } 
+        else {
+            cout << "Served (Coffee): (none)\n";
         }
 
         //random number from 0 -99
         int ranNum = (rand() % 100);
         if (ranNum <= 49){
             addCustomer(customerNames, drinkOrders, line);
-            cout << line.tail -> name << " joined the queue.\n";
-        }*/
+            cout << "Joined (Coffee): " << line.tail->name << " - " << line.tail->order << "\n";
+        }
+
+        cout << "Coffee queue:\n";
+        printQueue(line);
 
 
-        //SIM FOR DEQUEUE
-        /*if (!mline.empty()) {
-            cout << mline.front().name << " has been served.\n";
+        // SIM FOR DEQUE (Muffin Booth)
+        if (!mline.empty()) {
+            cout << "Served (Muffin): " << mline.front().name << " - " << mline.front().order << "\n";
             mline.pop_front();
         } 
         else {
-            cout << "No customer to serve this round." << endl;
+            cout << "Served (Muffin): (none)\n";
         }
 
         int ranNumM = (rand() % 100);
@@ -122,18 +134,18 @@ int main(){
             m.name = customerNames[rand() % NAME];
             m.order = muffinTypes[rand()% ORDER];
             mline.push_back(m);
-            cout << mline.back().name << " joined queue.\n";
+            cout << "Joined (Muffin): " << mline.back().name << " - " << mline.back().order << "\n";
         }
-        //print muffin queue
-        cout << "Current muffin queue:\n";
+
+        cout << "Muffin queue:\n";
         if (mline.empty()){
             cout << "Muffin queue is empty.\n";
         } 
         else {
-            for (auto c : mline){
+            for (const auto c : mline){
                 cout << c.name << " - " << c.order << endl;
             }
-        }*/
+        }
 
         //SIM FOR VECTOR
         if (!bline.empty()){
@@ -148,15 +160,16 @@ int main(){
             b.name = customerNames[rand() % NAME];
             b.order = braceletTypes[rand()% ORDER];
             bline.push_back(b);
+            cout << "Joined (Bracelet): " << bline.back().name << " - " << bline.back().order << "\n";
         }
 
         //print bracelet queue
-        cout << "Current bracelet queue:\n";
+        cout << "Bracelet queue:\n";
         if (bline.empty()){
-            cout << "Muffin queue is empty.\n";
+            cout << "Bracelet queue is empty.\n";
         } 
         else {
-            for (auto c : bline){
+            for (const auto c : bline){
                 cout << c.name << " - " << c.order << endl;
             }
         }
