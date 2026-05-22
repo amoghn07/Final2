@@ -19,7 +19,7 @@ struct List{
     Node *tail = nullptr;
 };
 
-// muffin booth customer struct for deque
+// customer struct for deque
 struct Mc{
     string name;
     string order;
@@ -52,6 +52,13 @@ int main(){
         "Cranberry Orange Muffin"
     };
 
+    string braceletTypes[] = {
+        "Beaded Bracelet", "Friendship Bracelet", "Charm Bracelet",
+        "Leather Bracelet", "Woven Bracelet", "Braided Cord Bracelet",
+        "Macrame Bracelet", "Shell Bracelet", "Pearl Bracelet",
+        "Hemp Bracelet"
+    };
+
     int ct = 0;
 
     //linked list
@@ -60,13 +67,25 @@ int main(){
     //deque for muffin customers
     deque<Mc> mline;
 
+    //vector for bracelet customers
+    vector<Mc> bline;
+
     //initializing lines with 3 people
     for (int i = 0; i < 3; i++){
+        //add node
         addCustomer(customerNames, drinkOrders, line);
+
+        //add muffin customer
         Mc muffin;
         muffin.name = customerNames[rand() % NAME];
         muffin.order = muffinTypes[rand() % ORDER];
         mline.push_back(muffin);
+
+        //add bracelet customer
+        Mc bracelet;
+        bracelet.name = customerNames[rand() % NAME];
+        bracelet.order = braceletTypes[rand() % ORDER];
+        bline.push_back(bracelet);
     }
 
     //simulation
@@ -89,7 +108,7 @@ int main(){
 
 
         //SIM FOR DEQUEUE
-        if (!mline.empty()) {
+        /*if (!mline.empty()) {
             cout << mline.front().name << " has been served.\n";
             mline.pop_front();
         } 
@@ -114,7 +133,22 @@ int main(){
             for (auto c : mline){
                 cout << c.name << " - " << c.order << endl;
             }
+        }*/
+
+        //SIM FOR VECTOR
+        if (!bline.empty()){
+            cout << bline.front() << " has been served.\n";
+            bline.erase(bline.begin());
+            Mc b;
+            b.name = customerNames[rand() % NAME];
+            b.order = braceletTypes[rand()% ORDER];
         }
+        int ranNumB = (rand() % 100);
+
+        if(ranNumB <= 49){
+
+        }
+
 
         //increasing round counter
         ct++;
