@@ -10,6 +10,13 @@ struct Node{
     Node *next;
 };
 
+struct List{
+    Node *head;
+    Node *tail;
+};
+
+void addCustomer(string [], string [], List *);
+
 int main(){
 
     //generated data arrays
@@ -24,4 +31,8 @@ int main(){
         "Caramel Macchiato", "Cold Brew", "Iced Coffee", "Chai Latte", "Flat White"
     };
     return 0;
+}
+
+void addCustomer(string n [] , string o [] , List *l){
+    
 }
